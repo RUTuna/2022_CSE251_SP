@@ -1,7 +1,7 @@
 /* 
  * CS:APP Data Lab 
  * 
- * <Please put your name and userid here>
+ * <Park jian 20191128>
  * 
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
@@ -211,10 +211,9 @@ NOTES:
 unsigned floatAbsVal(unsigned uf) {
   unsigned exp = 0x7F800000 & uf; // exponent of uf
   unsigned frac = 0x007FFFFF & uf; // exponent of uf
-  unsigned abs = 0x7FFFFFFF & uf; // change sign bit to 0
 
   if(exp == 0x7F800000 && frac != 0x00) return uf; // if nan, return argument
-  else return abs;
+  else return 0x7FFFFFFF & uf; // change sign bit to 0
 }
 /* 
  * floatNegate - Return bit-level equivalent of expression -f for
@@ -230,10 +229,9 @@ unsigned floatAbsVal(unsigned uf) {
 unsigned floatNegate(unsigned uf) {
   unsigned exp = 0x7F800000 & uf; // exponent of uf
   unsigned frac = 0x007FFFFF & uf; // exponent of uf
-  unsigned neg = 0x80000000 ^ uf; // change sign bit
 
   if(exp == 0x7F800000 && frac != 0x00) return uf; // if nan, return argument
-  else return neg;
+  else return 0x80000000 ^ uf; // change sign bit
 }
 /* 
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
@@ -249,7 +247,10 @@ unsigned floatNegate(unsigned uf) {
  *   Rating: 4
  */
 unsigned floatPower2(int x) {
-    return 2;
+  if(x < -149) return 0; // too samll case : (1-Bias) + (-#frac bits) = (-126) + (-23) = -149
+  else if(x < -126) return 1 << (unsigned) (x + 149); // denormalization
+  else if (x < 128) return (x + 127) << 23; // normalization
+  else return 0xFF << 23; // too large case
 }
 //#include "floatScale2.c"
 //#include "isLess.c"
@@ -262,7 +263,9 @@ unsigned floatPower2(int x) {
  *   Rating: 4
  */
 int isPower2(int x) {
-  return 2;
+  int isPositive = ((x >> 31) ^ 1) & !(!x); // not negative and not zero
+  int isPower = !(x & (x + (~1 + 1))); // if x is a power of 2 then 10..0(2), and (x - 1) is 01..1(2). So x & (x - 1) is 0
+  return isPositive & isPower;
 }
 /* 
  * logicalNeg - implement the ! operator, using all of 
@@ -273,7 +276,8 @@ int isPower2(int x) {
  *   Rating: 4 
  */
 int logicalNeg(int x) {
-  return 2;
+  int negativeX = ~x + 1; // -x = ~x + 1
+  return ((x | negativeX) >> 31 ) + 1; // if x is not zero, sign bit of (x | -x) is 1. So after shifting 31 bit, it will be 0xFFFFFFFF
 }
 /* 
  * logicalShift - shift x to the right by n, using a logical shift
