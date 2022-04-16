@@ -209,7 +209,12 @@ NOTES:
  *   Rating: 2
  */
 unsigned floatAbsVal(unsigned uf) {
-  return 2;
+  unsigned exp = 0x7F800000 & uf; // exponent of uf
+  unsigned frac = 0x007FFFFF & uf; // exponent of uf
+  unsigned abs = 0x7FFFFFFF & uf; // change sign bit to 0
+
+  if(exp == 0x7F800000 && frac != 0x00) return uf; // if nan, return argument
+  else return abs;
 }
 /* 
  * floatNegate - Return bit-level equivalent of expression -f for
@@ -223,7 +228,12 @@ unsigned floatAbsVal(unsigned uf) {
  *   Rating: 2
  */
 unsigned floatNegate(unsigned uf) {
- return 2;
+  unsigned exp = 0x7F800000 & uf; // exponent of uf
+  unsigned frac = 0x007FFFFF & uf; // exponent of uf
+  unsigned neg = 0x80000000 ^ uf; // change sign bit
+
+  if(exp == 0x7F800000 && frac != 0x00) return uf; // if nan, return argument
+  else return neg;
 }
 /* 
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
@@ -291,7 +301,7 @@ int replaceByte(int x, int n, int c) {
 /* 
  * rotateRight - Rotate x to the right by n
  *   Can assume that 0 <= n <= 31
- *   Examples: rotateRight(0x87654321,4) = 0x187654321
+ *   Examples: rotateRight(0x87654321,4) = 0x18765432
  *   Legal ops: ~ & ^ | + << >> !
  *   Max ops: 25
  *   Rating: 3 
