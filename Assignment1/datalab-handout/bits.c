@@ -267,7 +267,7 @@ int isPower2(int x) {
   int isPower = !(x & (x + (~1 + 1))); // if x is a power of 2 then 10..0(2), and (x - 1) is 01..1(2). So x & (x - 1) is 0
   return isPositive & isPower;
 }
-/* 
+/*
  * logicalNeg - implement the ! operator, using all of 
  *              the legal operators except !
  *   Examples: logicalNeg(3) = 0, logicalNeg(0) = 1
@@ -288,7 +288,11 @@ int logicalNeg(int x) {
  *   Rating: 3 
  */
 int logicalShift(int x, int n) {
-  return 2;
+  int TMin = 1 << 31; // 0x80000000
+  int shift = x >> n; // arithmetic shift
+  TMin = (TMin >> n) << 1; // only shifted bits are 1, otherwise 0
+
+  return ~TMin & shift;
 }
 /* 
  * replaceByte(x,n,c) - Replace byte n in x with c
@@ -334,7 +338,15 @@ int satMul2(int x) {
  *  Rating: 2
  */
 int sign(int x) {
-    return 2;
+  /*
+   *            isNotNegative          isPositive          sum
+   * negative         0                     0               0
+   * zero             1                     0               1
+   * positive         1                     1               2
+  */
+  int isNotNegative = !((x >> 31) & 1); // if x is negative 0, otherwise 1
+  int isPositive = isNotNegative & !(!x); // if x is positive 1, otherwise 0
+  return isNotNegative + isPositive + (~1 + 1); // sum - 1
 }
 //#include "subtractionOK.c"
 /* 
@@ -344,7 +356,10 @@ int sign(int x) {
  *   Rating: 1
  */
 int thirdBits(void) {
-  return 2;
+  int res = 0x49; // 01001001(2)
+  res += res << 9; // 0 10010010 01001001(2)
+  res += res << 18; // 01001001 00100100 10010010 01001001(2)
+  return res;
 }
 /* 
  * upperBits - pads n upper bits with 1's
@@ -355,5 +370,8 @@ int thirdBits(void) {
  *  Rating: 1
  */
 int upperBits(int n) {
-  return 2;
+  int bit = 1 << 31; // OxF0000000
+  int minus = ~1 + 1; // -1
+  int isNotZero = (!n) + minus; // if n is zero 0x00000000, otherwise 0xFFFFFFFF
+  return (bit >> (n + minus)) & isNotZero; // shift bit (n-1) times. if n is zero return 0
 }
