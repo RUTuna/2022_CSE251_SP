@@ -248,7 +248,7 @@ unsigned floatNegate(unsigned uf) {
  */
 unsigned floatPower2(int x) {
   if(x < -149) return 0; // too samll case : (1-Bias) + (-#frac bits) = (-126) + (-23) = -149
-  else if(x < -126) return 1 << (unsigned) (x + 149); // denormalization
+  else if(x < -126) return 1 << (x + 149); // denormalization
   else if (x < 128) return (x + 127) << 23; // normalization
   else return 0xFF << 23; // too large case
 }
@@ -304,7 +304,14 @@ int logicalShift(int x, int n) {
  *   Rating: 3
  */
 int replaceByte(int x, int n, int c) {
-  return 2;
+  int makeZero = 0xFF;
+  int byte;
+  int replaced;
+  makeZero = makeZero << (n << 3); // shift 0xFF to byte n
+  replaced = ~makeZero & x; // only replaced bytes wil be 0, So make n bytes in x with 0
+  byte = c << (n << 3);
+  replaced += byte;
+  return replaced;
 }
 /* 
  * rotateRight - Rotate x to the right by n
@@ -315,7 +322,22 @@ int replaceByte(int x, int n, int c) {
  *   Rating: 3 
  */
 int rotateRight(int x, int n) {
-  return 2;
+  int makeZero = 0;
+  int bit;
+  int rotated;
+
+  makeZero = makeZero + (~1 + 1); // make makeZero to 0xFFFFFFFF
+  makeZero = makeZero << n; // only rotated bits wii be 0
+  bit = ~makeZero & x; // only rotated bits wii be 1. It's n bits that will be moved MSB to LSB
+  bit = bit << (32 + (~n + 1)); // shift 31 - n
+  
+  makeZero = 1 << 31; // 0x80000000
+  makeZero = (makeZero >> n) << 1; // only shifted bits are 1, otherwise 0
+  rotated = x >> n;
+  rotated = ~makeZero & rotated; // make n MSB bits in x with 0
+  rotated += bit;
+
+  return rotated;
 }
 /*
  * satMul2 - multiplies by 2, saturating to Tmin or Tmax if overflow
@@ -327,7 +349,15 @@ int rotateRight(int x, int n) {
  *   Rating: 3
  */
 int satMul2(int x) {
-  return 2;
+  int TMin = 1 << 31; // 0x80000000
+  int mul = x << 1;
+  int isOverflow;
+  int overflowValue;
+
+  isOverflow = (x >> 31) ^ (mul >> 31); // if it overflowed 1 otherwise 0
+  overflowValue = TMin ^ (mul >> 31); // if mul is negative TMin, postive TMax
+  
+  return (~isOverflow & mul) | (isOverflow & overflowValue);
 }
 /* 
  * sign - return 1 if positive, 0 if zero, and -1 if negative
