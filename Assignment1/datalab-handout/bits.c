@@ -326,13 +326,13 @@ int rotateRight(int x, int n) {
   int bit;
   int rotated;
 
-  makeZero = makeZero + (~1 + 1); // make makeZero to 0xFFFFFFFF
+  makeZero = makeZero + (~1 + 1); // 0xFFFFFFFF
   makeZero = makeZero << n; // only rotated bits wii be 0
   bit = ~makeZero & x; // only rotated bits wii be 1. It's n bits that will be moved MSB to LSB
   bit = bit << (32 + (~n + 1)); // shift 31 - n
   
   makeZero = 1 << 31; // 0x80000000
-  makeZero = (makeZero >> n) << 1; // only shifted bits are 1, otherwise 0
+  makeZero = (makeZero >> n) << 1; // only shifted bits will be 1, otherwise 0
   rotated = x >> n;
   rotated = ~makeZero & rotated; // make n MSB bits in x with 0
   rotated += bit;
@@ -354,10 +354,10 @@ int satMul2(int x) {
   int isOverflow;
   int overflowValue;
 
-  isOverflow = (x >> 31) ^ (mul >> 31); // if it overflowed 1 otherwise 0
+  isOverflow = (x >> 31) ^ (mul >> 31); // if it overflowed 1 otherwise 0 (when overflow, sign bit is changed)
   overflowValue = TMin ^ (mul >> 31); // if mul is negative TMin, postive TMax
   
-  return (~isOverflow & mul) | (isOverflow & overflowValue);
+  return (~isOverflow & mul) | (isOverflow & overflowValue); // if it oberflowed return mul, otherwise return TMin or TMax
 }
 /* 
  * sign - return 1 if positive, 0 if zero, and -1 if negative
