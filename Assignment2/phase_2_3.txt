@@ -1,0 +1,1866 @@
+[edusc03-032@cheetah ~]$  ssh cheetah022
+Last login: Thu May 26 22:17:03 2022 from 172.31.60.200
+[edusc03-032@cheetah022 ~]$ ls
+Assignment2
+[edusc03-032@cheetah022 ~]$ cd Assignment2/bomb32
+[edusc03-032@cheetah022 bomb32]$ gdb bomb
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-100.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /home/edusc03/edusc03-032/Assignment2/bomb32/bomb...done.
+(gdb) break phase_2
+Breakpoint 1 at 0x400e81
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+^C
+Program received signal SIGINT, Interrupt.
+0x00002aaaaadbeb40 in __read_nocancel () from /lib64/libc.so.6
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-325.el7_9.x86_64
+(gdb) diasa phase_2
+Undefined command: "diasa".  Try "help".
+(gdb) disas phase_2
+Dump of assembler code for function phase_2:
+   0x0000000000400e81 <+0>:     push   %rbx
+   0x0000000000400e82 <+1>:     sub    $0x20,%rsp
+   0x0000000000400e86 <+5>:     mov    %rsp,%rsi
+   0x0000000000400e89 <+8>:     callq  0x4013b1 <read_six_numbers>
+   0x0000000000400e8e <+13>:    cmpl   $0x0,(%rsp)
+   0x0000000000400e92 <+17>:    js     0x400e9b <phase_2+26>
+   0x0000000000400e94 <+19>:    mov    $0x1,%ebx
+   0x0000000000400e99 <+24>:    jmp    0x400eac <phase_2+43>
+   0x0000000000400e9b <+26>:    callq  0x40138f <explode_bomb>
+   0x0000000000400ea0 <+31>:    jmp    0x400e94 <phase_2+19>
+   0x0000000000400ea2 <+33>:    add    $0x1,%rbx
+   0x0000000000400ea6 <+37>:    cmp    $0x6,%rbx
+   0x0000000000400eaa <+41>:    je     0x400ebe <phase_2+61>
+   0x0000000000400eac <+43>:    mov    %ebx,%eax
+   0x0000000000400eae <+45>:    add    -0x4(%rsp,%rbx,4),%eax
+   0x0000000000400eb2 <+49>:    cmp    %eax,(%rsp,%rbx,4)
+   0x0000000000400eb5 <+52>:    je     0x400ea2 <phase_2+33>
+   0x0000000000400eb7 <+54>:    callq  0x40138f <explode_bomb>
+   0x0000000000400ebc <+59>:    jmp    0x400ea2 <phase_2+33>
+---Type <return> to continue, or q <return> to quit---
+   0x0000000000400ebe <+61>:    add    $0x20,%rsp
+   0x0000000000400ec2 <+65>:    pop    %rbx
+   0x0000000000400ec3 <+66>:    retq   
+End of assembler dump.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n)  n
+Program not restarted.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 1 1 1 1 1
+
+Breakpoint 1, 0x0000000000400e81 in phase_2 ()
+(gdb) disas
+Dump of assembler code for function phase_2:
+=> 0x0000000000400e81 <+0>:     push   %rbx
+   0x0000000000400e82 <+1>:     sub    $0x20,%rsp
+   0x0000000000400e86 <+5>:     mov    %rsp,%rsi
+   0x0000000000400e89 <+8>:     callq  0x4013b1 <read_six_numbers>
+   0x0000000000400e8e <+13>:    cmpl   $0x0,(%rsp)
+   0x0000000000400e92 <+17>:    js     0x400e9b <phase_2+26>
+   0x0000000000400e94 <+19>:    mov    $0x1,%ebx
+   0x0000000000400e99 <+24>:    jmp    0x400eac <phase_2+43>
+   0x0000000000400e9b <+26>:    callq  0x40138f <explode_bomb>
+   0x0000000000400ea0 <+31>:    jmp    0x400e94 <phase_2+19>
+   0x0000000000400ea2 <+33>:    add    $0x1,%rbx
+   0x0000000000400ea6 <+37>:    cmp    $0x6,%rbx
+   0x0000000000400eaa <+41>:    je     0x400ebe <phase_2+61>
+   0x0000000000400eac <+43>:    mov    %ebx,%eax
+   0x0000000000400eae <+45>:    add    -0x4(%rsp,%rbx,4),%eax
+   0x0000000000400eb2 <+49>:    cmp    %eax,(%rsp,%rbx,4)
+   0x0000000000400eb5 <+52>:    je     0x400ea2 <phase_2+33>
+   0x0000000000400eb7 <+54>:    callq  0x40138f <explode_bomb>
+   0x0000000000400ebc <+59>:    jmp    0x400ea2 <phase_2+33>
+---Type <return> to continue, or q <return> to quit---
+   0x0000000000400ebe <+61>:    add    $0x20,%rsp
+   0x0000000000400ec2 <+65>:    pop    %rbx
+   0x0000000000400ec3 <+66>:    retq   
+End of assembler dump.
+(gdb) disable 1
+(gdb) break read_six_numbers
+Breakpoint 2 at 0x4013b1
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 1 1 1 1 1
+
+Breakpoint 2, 0x00000000004013b1 in read_six_numbers ()
+(gdb) disas
+Dump of assembler code for function read_six_numbers:
+=> 0x00000000004013b1 <+0>:     sub    $0x8,%rsp
+   0x00000000004013b5 <+4>:     mov    %rsi,%rdx
+   0x00000000004013b8 <+7>:     lea    0x4(%rsi),%rcx
+   0x00000000004013bc <+11>:    lea    0x14(%rsi),%rax
+   0x00000000004013c0 <+15>:    push   %rax
+   0x00000000004013c1 <+16>:    lea    0x10(%rsi),%rax
+   0x00000000004013c5 <+20>:    push   %rax
+   0x00000000004013c6 <+21>:    lea    0xc(%rsi),%r9
+   0x00000000004013ca <+25>:    lea    0x8(%rsi),%r8
+   0x00000000004013ce <+29>:    mov    $0x402443,%esi
+   0x00000000004013d3 <+34>:    mov    $0x0,%eax
+   0x00000000004013d8 <+39>:    callq  0x400bc0 <__isoc99_sscanf@plt>
+   0x00000000004013dd <+44>:    add    $0x10,%rsp
+   0x00000000004013e1 <+48>:    cmp    $0x5,%eax
+   0x00000000004013e4 <+51>:    jle    0x4013eb <read_six_numbers+58>
+   0x00000000004013e6 <+53>:    add    $0x8,%rsp
+   0x00000000004013ea <+57>:    retq   
+   0x00000000004013eb <+58>:    callq  0x40138f <explode_bomb>
+End of assembler dump.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n)  y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+6 6 6 6 6 6
+
+Breakpoint 2, 0x00000000004013b1 in read_six_numbers ()
+(gdb) disas
+Dump of assembler code for function read_six_numbers:
+=> 0x00000000004013b1 <+0>:     sub    $0x8,%rsp
+   0x00000000004013b5 <+4>:     mov    %rsi,%rdx
+   0x00000000004013b8 <+7>:     lea    0x4(%rsi),%rcx
+   0x00000000004013bc <+11>:    lea    0x14(%rsi),%rax
+   0x00000000004013c0 <+15>:    push   %rax
+   0x00000000004013c1 <+16>:    lea    0x10(%rsi),%rax
+   0x00000000004013c5 <+20>:    push   %rax
+   0x00000000004013c6 <+21>:    lea    0xc(%rsi),%r9
+   0x00000000004013ca <+25>:    lea    0x8(%rsi),%r8
+   0x00000000004013ce <+29>:    mov    $0x402443,%esi
+   0x00000000004013d3 <+34>:    mov    $0x0,%eax
+   0x00000000004013d8 <+39>:    callq  0x400bc0 <__isoc99_sscanf@plt>
+   0x00000000004013dd <+44>:    add    $0x10,%rsp
+   0x00000000004013e1 <+48>:    cmp    $0x5,%eax
+   0x00000000004013e4 <+51>:    jle    0x4013eb <read_six_numbers+58>
+   0x00000000004013e6 <+53>:    add    $0x8,%rsp
+   0x00000000004013ea <+57>:    retq   
+   0x00000000004013eb <+58>:    callq  0x40138f <explode_bomb>
+End of assembler dump.
+(gdb) print 0x402443
+$1 = 4203587
+(gdb) x/s 0x402443
+0x402443:       "%d %d %d %d %d %d"
+(gdb) disable 1
+(gdb) disable 2
+(gdb) break phase_3
+Breakpoint 3 at 0x400ec4
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+6 6 6 6 6 6
+
+BOOM!!!
+The bomb has blown up.
+[Inferior 1 (process 1496) exited with code 010]
+(gdb) disas
+No frame selected.
+(gdb) 
+No frame selected.
+(gdb) stepi
+The program is not being run.
+(gdb) enable 2
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+6 6 6 6 6 6
+
+Breakpoint 2, 0x00000000004013b1 in read_six_numbers ()
+(gdb) stepi
+0x00000000004013b5 in read_six_numbers ()
+(gdb) 
+0x00000000004013b8 in read_six_numbers ()
+(gdb) 
+0x00000000004013bc in read_six_numbers ()
+(gdb) 
+0x00000000004013c0 in read_six_numbers ()
+(gdb) 
+0x00000000004013c1 in read_six_numbers ()
+(gdb) 
+0x00000000004013c5 in read_six_numbers ()
+(gdb) 
+0x00000000004013c6 in read_six_numbers ()
+(gdb) 
+0x00000000004013ca in read_six_numbers ()
+(gdb) 
+0x00000000004013ce in read_six_numbers ()
+(gdb) 
+0x00000000004013d3 in read_six_numbers ()
+(gdb) 
+0x00000000004013d8 in read_six_numbers ()
+(gdb) 
+0x0000000000400bc0 in __isoc99_sscanf@plt ()
+(gdb) 
+0x0000000000400bc6 in __isoc99_sscanf@plt ()
+(gdb) 
+0x0000000000400bcb in __isoc99_sscanf@plt ()
+(gdb) 
+0x0000000000400aa0 in ?? ()
+(gdb) 
+0x0000000000400aa6 in ?? ()
+(gdb) 
+0x00002aaaaaac18e0 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac18e1 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac18e4 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac18e8 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac18ef in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac18f3 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac18f8 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac18fd in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac1902 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac1907 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac190c in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac1911 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac1916 in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac191a in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaac191e in _dl_runtime_resolve_fxsave () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d20 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d21 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d24 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d26 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d2a in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d2e in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d32 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d36 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d3a in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d41 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d45 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d49 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d4d in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d50 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d54 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d58 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d5b in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d60 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d63 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d66 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d6a in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d70 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d77 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d7a in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d80 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d84 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d88 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d8e in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d92 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d99 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9d9d in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9da2 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9da6 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9da8 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9dac in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9db4 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9db6 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9dbc in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9dc2 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9dc4 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9dcb in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9dd0 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9dd4 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9ddd in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9de3 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9de6 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab9de9 in _dl_fixup () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f80 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f81 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f84 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f86 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f89 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f8b in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f8d in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f90 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f92 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f95 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f96 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4f99 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fa0 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fa3 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4faa in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fb1 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fb3 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fb9 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fbc in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fc2 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fc8 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fcb in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fcf in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fd3 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fd6 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fd9 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fdc in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fde in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fc8 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fcb in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fcf in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fd3 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fd6 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fd9 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fdc in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fde in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fc8 in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) 
+0x00002aaaaaab4fcb in _dl_lookup_symbol_x () from /lib64/ld-linux-x86-64.so.2
+(gdb) ^CQuit
+(gdb) disable 2
+(gdb) breake 0x400e8e
+Undefined command: "breake".  Try "help".
+(gdb) break *0x400e8e
+Breakpoint 4 at 0x400e8e
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+6 6 6 6 6 6
+
+Breakpoint 4, 0x0000000000400e8e in phase_2 ()
+(gdb) stepi
+0x0000000000400e92 in phase_2 ()
+(gdb) 
+0x0000000000400e94 in phase_2 ()
+(gdb) 
+0x0000000000400e99 in phase_2 ()
+(gdb) 
+0x0000000000400eac in phase_2 ()
+(gdb) 
+0x0000000000400eae in phase_2 ()
+(gdb) 
+0x0000000000400eb2 in phase_2 ()
+(gdb) 
+0x0000000000400eb5 in phase_2 ()
+(gdb) 
+0x0000000000400eb7 in phase_2 ()
+(gdb) 
+0x000000000040138f in explode_bomb ()
+(gdb) info registers
+rax            0x7      7
+rbx            0x1      1
+rcx            0x7fffffffe0b0   140737488347312
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffdaa0   140737488345760
+rbp            0x0      0x0
+rsp            0x7fffffffe0b8   0x7fffffffe0b8
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40138f 0x40138f <explode_bomb>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/s (%rsp,%rbx,4)
+A syntax error in expression, near `%rsp,%rbx,4)'.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 3 4 5 6
+
+Breakpoint 4, 0x0000000000400e8e in phase_2 ()
+(gdb) stepi
+0x0000000000400e92 in phase_2 ()
+(gdb) 
+0x0000000000400e94 in phase_2 ()
+(gdb) 
+0x0000000000400e99 in phase_2 ()
+(gdb) 
+0x0000000000400eac in phase_2 ()
+(gdb) 
+0x0000000000400eae in phase_2 ()
+(gdb) info registers
+rax            0x1      1
+rbx            0x1      1
+rcx            0x7fffffffe0b0   140737488347312
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffdaa0   140737488345760
+rbp            0x0      0x0
+rsp            0x7fffffffe0c0   0x7fffffffe0c0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400eae 0x400eae <phase_2+45>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000400eb2 in phase_2 ()
+(gdb) info registers
+rax            0x2      2
+rbx            0x1      1
+rcx            0x7fffffffe0b0   140737488347312
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffdaa0   140737488345760
+rbp            0x0      0x0
+rsp            0x7fffffffe0c0   0x7fffffffe0c0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400eb2 0x400eb2 <phase_2+49>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi
+0x0000000000400ea6 in phase_2 ()
+(gdb) stepi
+0x0000000000400eaa in phase_2 ()
+(gdb) stepi
+0x0000000000400eac in phase_2 ()
+(gdb) stepi
+0x0000000000400eae in phase_2 ()
+(gdb) stepi
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb7 in phase_2 ()
+(gdb) info registers
+rax            0x4      4
+rbx            0x2      2
+rcx            0x7fffffffe0b0   140737488347312
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffdaa0   140737488345760
+rbp            0x0      0x0
+rsp            0x7fffffffe0c0   0x7fffffffe0c0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400eb7 0x400eb7 <phase_2+54>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+
+Breakpoint 4, 0x0000000000400e8e in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eae in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi 
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi 
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eac in phase_2 ()
+(gdb) stepi 
+0x0000000000400eae in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi 
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi
+0x0000000000400ea6 in phase_2 ()
+(gdb) stepi
+0x0000000000400eaa in phase_2 ()
+(gdb) stepi
+0x0000000000400ebe in phase_2 ()
+(gdb) stepi
+0x0000000000400ec2 in phase_2 ()
+(gdb) stepi
+0x0000000000400ec3 in phase_2 ()
+(gdb) stepi
+main (argc=<optimized out>, argv=<optimized out>) at bomb.c:83
+83          phase_defused();
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break phase_3
+Breakpoint 5 at 0x400ec4
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+
+ kill
+
+Breakpoint 5, 0x0000000000400ec4 in phase_3 ()
+(gdb) x/s 0x40244f 
+0x40244f:       "%d %d"
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n)  y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 4
+
+Breakpoint 5, 0x0000000000400ec4 in phase_3 ()
+(gdb) stepi
+0x0000000000400ec8 in phase_3 ()
+(gdb) stepi 9
+0x00002aaaaad3b63e in __isoc99_sscanf () from /lib64/libc.so.6
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break *0x400ee1
+Breakpoint 6 at 0x400ee1
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 3
+
+Breakpoint 6, 0x0000000000400ee1 in phase_3 ()
+(gdb) stepi
+0x0000000000400ee4 in phase_3 ()
+(gdb) stepi
+0x0000000000400ee6 in phase_3 ()
+(gdb) stepi
+0x0000000000400eeb in phase_3 ()
+(gdb) stepi
+0x0000000000400eed in phase_3 ()
+(gdb) stepi
+0x0000000000400ef1 in phase_3 ()
+(gdb) stepi
+0x0000000000400f06 in phase_3 ()
+(gdb) x/s 0x4022c0
+0x4022c0:       "<\017@"
+(gdb) print 0x4022c0
+$2 = 4203200
+(gdb) print *0x4022c0
+$3 = 4198204
+(gdb) x/s *0x4022c0
+0x400f3c <phase_3+120>: "\270&\002"
+(gdb) info register
+rax            0x2      2
+rbx            0x0      0
+rcx            0x20     32
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f06 0x400f06 <phase_3+66>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) print *(int*)0x4022c0
+$4 = 4198204
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 648
+
+Breakpoint 6, 0x0000000000400ee1 in phase_3 ()
+(gdb) stepi
+0x0000000000400ee4 in phase_3 ()
+(gdb) stepi 9
+0x0000000000400f47 in phase_3 ()
+(gdb) kill
+Kill the program being debugged? (y or n) n
+Not confirmed.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+
+Breakpoint 6, 0x0000000000400ee1 in phase_3 ()
+(gdb) stepi
+0x0000000000400ee4 in phase_3 ()
+(gdb) stepi 8
+0x0000000000400f45 in phase_3 ()
+(gdb) stepi
+0x0000000000400f4c in phase_3 ()
+(gdb) stepi
+0x0000000000400f50 in phase_3 ()
+(gdb) stepi
+main (argc=<optimized out>, argv=<optimized out>) at bomb.c:90
+90          phase_defused();
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break phase_4
+Breakpoint 7 at 0x400f85
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+1
+
+Breakpoint 7, 0x0000000000400f85 in phase_4 ()
+(gdb) 
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+
+Breakpoint 4, 0x0000000000400e8e in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eae in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi 
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi 
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eac in phase_2 ()
+(gdb) stepi 
+0x0000000000400eae in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi 
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi 5
+0x0000000000400eb2 in phase_2 ()
+(gdb) stepi 
+0x0000000000400eb5 in phase_2 ()
+(gdb) stepi
+0x0000000000400ea2 in phase_2 ()
+(gdb) stepi
+0x0000000000400ea6 in phase_2 ()
+(gdb) stepi
+0x0000000000400eaa in phase_2 ()
+(gdb) stepi
+0x0000000000400ebe in phase_2 ()
+(gdb) stepi
+0x0000000000400ec2 in phase_2 ()
+(gdb) stepi
+0x0000000000400ec3 in phase_2 ()
+(gdb) stepi
+main (argc=<optimized out>, argv=<optimized out>) at bomb.c:83
+83          phase_defused();
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break phase_3
+Breakpoint 5 at 0x400ec4
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+
+ kill
+
+Breakpoint 5, 0x0000000000400ec4 in phase_3 ()
+(gdb) x/s 0x40244f 
+0x40244f:       "%d %d"
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n)  y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 4
+
+Breakpoint 5, 0x0000000000400ec4 in phase_3 ()
+(gdb) stepi
+0x0000000000400ec8 in phase_3 ()
+(gdb) stepi 9
+0x00002aaaaad3b63e in __isoc99_sscanf () from /lib64/libc.so.6
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break *0x400ee1
+Breakpoint 6 at 0x400ee1
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 3
+
+Breakpoint 6, 0x0000000000400ee1 in phase_3 ()
+(gdb) stepi
+0x0000000000400ee4 in phase_3 ()
+(gdb) stepi
+0x0000000000400ee6 in phase_3 ()
+(gdb) stepi
+0x0000000000400eeb in phase_3 ()
+(gdb) stepi
+0x0000000000400eed in phase_3 ()
+(gdb) stepi
+0x0000000000400ef1 in phase_3 ()
+(gdb) stepi
+0x0000000000400f06 in phase_3 ()
+(gdb) x/s 0x4022c0
+0x4022c0:       "<\017@"
+(gdb) print 0x4022c0
+$2 = 4203200
+(gdb) print *0x4022c0
+$3 = 4198204
+(gdb) x/s *0x4022c0
+0x400f3c <phase_3+120>: "\270&\002"
+(gdb) info register
+rax            0x2      2
+rbx            0x0      0
+rcx            0x20     32
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f06 0x400f06 <phase_3+66>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) print *(int*)0x4022c0
+$4 = 4198204
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 648
+
+Breakpoint 6, 0x0000000000400ee1 in phase_3 ()
+(gdb) stepi
+0x0000000000400ee4 in phase_3 ()
+(gdb) stepi 9
+0x0000000000400f47 in phase_3 ()
+(gdb) kill
+Kill the program being debugged? (y or n) n
+Not confirmed.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+
+Breakpoint 6, 0x0000000000400ee1 in phase_3 ()
+(gdb) stepi
+0x0000000000400ee4 in phase_3 ()
+(gdb) stepi 8
+0x0000000000400f45 in phase_3 ()
+(gdb) stepi
+0x0000000000400f4c in phase_3 ()
+(gdb) stepi
+0x0000000000400f50 in phase_3 ()
+(gdb) stepi
+main (argc=<optimized out>, argv=<optimized out>) at bomb.c:90
+90          phase_defused();
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break phase_4
+Breakpoint 7 at 0x400f85
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+1
+
+Breakpoint 7, 0x0000000000400f85 in phase_4 ()
+(gdb) x/s 0x40244f
+0x40244f:       "%d %d"
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break *0x400fc6
+Breakpoint 8 at 0x400fc6
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+7 27
+
+Breakpoint 8, 0x0000000000400fc6 in phase_4 ()
+(gdb) stepi
+0x0000000000400fc9 in phase_4 ()
+(gdb) info register
+rax            0x7      7
+rbx            0x0      0
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x0      0
+rdi            0x7      7
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400fc9 0x400fc9 <phase_4+68>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000400fd2 in phase_4 ()
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+27 27
+
+BOOM!!!
+The bomb has blown up.
+[Inferior 1 (process 2990) exited with code 010]
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.       
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+7 27
+
+Breakpoint 8, 0x0000000000400fc6 in phase_4 ()
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break func4
+Breakpoint 9 at 0x400f51
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+7 27
+
+Breakpoint 9, 0x0000000000400f51 in func4 ()
+(gdb) stepi
+0x0000000000400f52 in func4 ()
+(gdb) info register
+rax            0x2      2
+rbx            0x0      0
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x0      0
+rdi            0x7      7
+rbp            0x0      0x0
+rsp            0x7fffffffe0c0   0x7fffffffe0c0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f52 0x400f52 <func4+1>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) print -0x1(%rbx)
+A syntax error in expression, near `%rbx)'.
+(gdb) print (%rbx-1)
+A syntax error in expression, near `%rbx-1)'.
+(gdb) print ($rbx-1)
+$5 = -1
+(gdb) stepi
+0x0000000000400f54 in func4 ()
+(gdb) stepi 5
+0x0000000000400f5f in func4 ()
+(gdb) stepi 5
+0x0000000000400f69 in func4 ()
+(gdb) stepi 5
+0x0000000000400fd2 in phase_4 ()
+(gdb) info register
+rax            0x7      7
+rbx            0x0      0
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x0      0
+rdi            0x7      7
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400fd2 0x400fd2 <phase_4+77>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+4 27
+
+Breakpoint 9, 0x0000000000400f51 in func4 ()
+(gdb) stepi 5
+0x0000000000400f5b in func4 ()
+(gdb) stepi 2
+0x0000000000400f5f in func4 ()
+(gdb) stepi
+0x0000000000400f61 in func4 ()
+(gdb) stepi
+0x0000000000400f63 in func4 ()
+(gdb) stepi
+0x0000000000400f6d in func4 ()
+(gdb) info register
+rax            0xe      14
+rbx            0x7      7
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x0      0
+rdi            0x4      4
+rbp            0x0      0x0
+rsp            0x7fffffffe0c0   0x7fffffffe0c0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f6d 0x400f6d <func4+28>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/s %edx
+A syntax error in expression, near `%edx'.
+(gdb) x/s $edx
+0xe:    <Address 0xe out of bounds>
+(gdb) print $edx
+$6 = 14
+(gdb) x/s $rbx
+0x7:    <Address 0x7 out of bounds>
+(gdb) print /x ($edx-1)
+$7 = 0xd
+(gdb) print /x ($edx+1)
+$8 = 0xf
+(gdb) stepi
+0x0000000000400f70 in func4 ()
+(gdb) stepi
+
+Breakpoint 9, 0x0000000000400f51 in func4 ()
+(gdb) stepi
+0x0000000000400f52 in func4 ()
+(gdb) info register
+rax            0xe      14
+rbx            0x7      7
+rcx            0x20     32
+rdx            0x6      6
+rsi            0x0      0
+rdi            0x4      4
+rbp            0x0      0x0
+rsp            0x7fffffffe0b0   0x7fffffffe0b0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f52 0x400f52 <func4+1>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) info register
+rax            0xe      14
+rbx            0x7      7
+rcx            0x20     32
+rdx            0x6      6
+rsi            0x0      0
+rdi            0x4      4
+rbp            0x0      0x0
+rsp            0x7fffffffe0b0   0x7fffffffe0b0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f52 0x400f52 <func4+1>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000400f54 in func4 ()
+(gdb) stepi 3
+0x0000000000400f5b in func4 ()
+(gdb) stepi
+0x0000000000400f5d in func4 ()
+(gdb) stepi
+0x0000000000400f5f in func4 ()
+(gdb) stepi
+0x0000000000400f61 in func4 ()
+(gdb) stepi
+0x0000000000400f63 in func4 ()
+(gdb) stepi
+0x0000000000400f65 in func4 ()
+(gdb) info register
+rax            0x6      6
+rbx            0x3      3
+rcx            0x20     32
+rdx            0x6      6
+rsi            0x0      0
+rdi            0x4      4
+rbp            0x0      0x0
+rsp            0x7fffffffe0b0   0x7fffffffe0b0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f65 0x400f65 <func4+20>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000400f67 in func4 ()
+(gdb) stepi
+0x0000000000400f79 in func4 ()
+(gdb) stepi
+0x0000000000400f7c in func4 ()
+(gdb) stepi
+
+Breakpoint 9, 0x0000000000400f51 in func4 ()
+(gdb) stepi
+0x0000000000400f52 in func4 ()
+(gdb) info register
+rax            0x6      6
+rbx            0x3      3
+rcx            0x20     32
+rdx            0x6      6
+rsi            0x4      4
+rdi            0x4      4
+rbp            0x0      0x0
+rsp            0x7fffffffe0a0   0x7fffffffe0a0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f52 0x400f52 <func4+1>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi 5
+0x0000000000400f5d in func4 ()
+(gdb) stepi
+0x0000000000400f5f in func4 ()
+(gdb) stepi
+0x0000000000400f61 in func4 ()
+(gdb) info register
+rax            0x2      2
+rbx            0x5      5
+rcx            0x20     32
+rdx            0x6      6
+rsi            0x4      4
+rdi            0x4      4
+rbp            0x0      0x0
+rsp            0x7fffffffe0a0   0x7fffffffe0a0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f61 0x400f61 <func4+16>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000400f63 in func4 ()
+(gdb) stepi
+0x0000000000400f6d in func4 ()
+(gdb) stepi 5
+
+Breakpoint 9, 0x0000000000400f51 in func4 ()
+(gdb) stepi 5
+0x0000000000400f5b in func4 ()
+(gdb) stepi 5
+0x0000000000400f65 in func4 ()
+(gdb) stepi
+0x0000000000400f67 in func4 ()
+(gdb) stepi
+0x0000000000400f69 in func4 ()
+(gdb) stepi
+0x0000000000400f6b in func4 ()
+(gdb) info register
+rax            0x4      4
+rbx            0x4      4
+rcx            0x20     32
+rdx            0x4      4
+rsi            0x4      4
+rdi            0x4      4
+rbp            0x0      0x0
+rsp            0x7fffffffe090   0x7fffffffe090
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f6b 0x400f6b <func4+26>
+eflags         0x246    [ PF ZF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000400f6c in func4 ()
+(gdb) stepi
+0x0000000000400f75 in func4 ()
+(gdb) stepi
+0x0000000000400f77 in func4 ()
+(gdb) stepi
+0x0000000000400f69 in func4 ()
+(gdb) stepi
+0x0000000000400f6b in func4 ()
+(gdb) stepi
+0x0000000000400f6c in func4 ()
+(gdb) stepi
+0x0000000000400f81 in func4 ()
+(gdb) stepi
+0x0000000000400f83 in func4 ()
+(gdb) stepi
+0x0000000000400f69 in func4 ()
+(gdb) stepi
+0x0000000000400f6b in func4 ()
+(gdb) stepi
+0x0000000000400f6c in func4 ()
+(gdb) stepi
+0x0000000000400f75 in func4 ()
+(gdb) stepi
+0x0000000000400f77 in func4 ()
+(gdb) stepi
+0x0000000000400f69 in func4 ()
+(gdb) stepi
+0x0000000000400f6b in func4 ()
+(gdb) stepi
+0x0000000000400f6c in func4 ()
+(gdb) stepi
+0x0000000000400fc6 in phase_4 ()
+(gdb) info register
+rax            0x13     19
+rbx            0x0      0
+rcx            0x20     32
+rdx            0x4      4
+rsi            0x4      4
+rdi            0x4      4
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400fc6 0x400fc6 <phase_4+65>
+eflags         0x212    [ AF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+kill 
+
+BOOM!!!
+The bomb has blown up.
+[Inferior 1 (process 3675) exited with code 010]
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break func4
+Breakpoint 10 at 0x400f51
+(gdb) break *0x400fc6
+Breakpoint 11 at 0x400fc6
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+14 27
+
+Breakpoint 10, 0x0000000000400f51 in func4 ()
+(gdb) info register
+rax            0x2      2
+rbx            0x0      0
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x0      0
+rdi            0xe      14
+rbp            0x0      0x0
+rsp            0x7fffffffe0c8   0x7fffffffe0c8
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f51 0x400f51 <func4>
+eflags         0x246    [ PF ZF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 10, 0x0000000000400f51 in func4 ()
+(gdb) info register
+rax            0xe      14
+rbx            0x7      7
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x8      8
+rdi            0xe      14
+rbp            0x0      0x0
+rsp            0x7fffffffe0b8   0x7fffffffe0b8
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f51 0x400f51 <func4>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 10, 0x0000000000400f51 in func4 ()
+(gdb) info register
+rax            0x6      6
+rbx            0xb      11
+rcx            0x20     32
+rdx            0xe      14
+rsi            0xc      12
+rdi            0xe      14
+rbp            0x0      0x0
+rsp            0x7fffffffe0a8   0x7fffffffe0a8
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f51 0x400f51 <func4>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 10, 0x0000000000400f51 in func4 ()
+(gdb) info register
+rax            0x2      2
+rbx            0xd      13
+rcx            0x20     32
+rdx            0xe      14
+rsi            0xe      14
+rdi            0xe      14
+rbp            0x0      0x0
+rsp            0x7fffffffe098   0x7fffffffe098
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f51 0x400f51 <func4>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 11, 0x0000000000400fc6 in phase_4 ()
+(gdb) info register
+rax            0x2d     45
+rbx            0x0      0
+rcx            0x20     32
+rdx            0xe      14
+rsi            0xe      14
+rdi            0xe      14
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400fc6 0x400fc6 <phase_4+65>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+11 27
+
+Breakpoint 10, 0x0000000000400f51 in func4 ()
+(gdb) info register
+rax            0x2      2
+rbx            0x0      0
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x0      0
+rdi            0xb      11
+rbp            0x0      0x0
+rsp            0x7fffffffe0c8   0x7fffffffe0c8
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f51 0x400f51 <func4>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 10, 0x0000000000400f51 in func4 ()
+(gdb) info register
+rax            0xe      14
+rbx            0x7      7
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x8      8
+rdi            0xb      11
+rbp            0x0      0x0
+rsp            0x7fffffffe0b8   0x7fffffffe0b8
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400f51 0x400f51 <func4>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 11, 0x0000000000400fc6 in phase_4 ()
+(gdb) info register
+rax            0x12     18
+rbx            0x0      0
+rcx            0x20     32
+rdx            0xe      14
+rsi            0x8      8
+rdi            0xb      11
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400fc6 0x400fc6 <phase_4+65>
+eflags         0x216    [ PF AF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) quit
+A debugging session is active.
+
+        Inferior 1 [process 3787] will be killed.
+
+Quit anyway? (y or n) y
+[edusc03-032@cheetah022 bomb32]$ 

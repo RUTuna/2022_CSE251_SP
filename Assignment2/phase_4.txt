@@ -1,0 +1,38 @@
+[edusc03-032@cheetah ~]$  ssh cheetah022
+Last login: Thu May 26 23:15:15 2022 from 172.31.60.200
+[edusc03-032@cheetah022 ~]$ ls
+Assignment2
+[edusc03-032@cheetah022 ~]$ cd Assignment2
+[edusc03-032@cheetah022 Assignment2]$ ls
+bomb32  bomb32.tar  phase_2_3.txt  screenshot32.txt
+[edusc03-032@cheetah022 Assignment2]$ cd bomb32
+[edusc03-032@cheetah022 bomb32]$ ls
+bomb  bomb_assembly.asm  bomb.c  func4.c  ID  psol.txt  README
+[edusc03-032@cheetah022 bomb32]$ gdb bomb
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-100.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /home/edusc03/edusc03-032/Assignment2/bomb32/bomb...done.
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+^C
+Program received signal SIGINT, Interrupt.
+0x00002aaaaadbeb40 in __read_nocancel () from /lib64/libc.so.6
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-325.el7_9.x86_64
+(gdb) 

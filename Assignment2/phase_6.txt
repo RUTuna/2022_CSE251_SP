@@ -1,0 +1,1027 @@
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+1 2 3 4 5 6
+
+Breakpoint 5, 0x0000000000401065 in phase_6 ()
+(gdb) info register
+rax            0x6      6
+rbx            0x0      0
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x0      0x0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401065 0x401065 <phase_6+22>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/7w *($rsp)
+Attempt to dereference a generic pointer.
+(gdb) x/7w ($rsp)
+0x7fffffffe070: -1425443840     10922   -1425443264     10922
+0x7fffffffe080: 6306096 0       0
+(gdb) x/w ($rsp)
+0x7fffffffe070: -1425443840
+(gdb) x/s ($rsp)
+0x7fffffffe070: ""
+(gdb) x/d ($rsp)
+0x7fffffffe070: 0
+(gdb) print *(int *) ($rsp)
+$3 = -1425443840
+(gdb) stepi
+0x000000000040106a in phase_6 ()
+(gdb) info register
+rax            0x6      6
+rbx            0x0      0
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x0      0x0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40106a 0x40106a <phase_6+27>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) print *(int *) ($r12+24)
+$4 = 6306096
+(gdb) stepi
+0x000000000040106d in phase_6 ()
+(gdb) stepi
+0x0000000000401073 in phase_6 ()
+(gdb) stepi
+0x000000000040109b in phase_6 ()
+(gdb) stepi
+0x000000000040109e in phase_6 ()
+(gdb) stepi
+0x00000000004010a2 in phase_6 ()
+(gdb) info register
+rax            0x1      1
+rbx            0x0      0
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a0   0x7fffffffe0a0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x0      0
+r15            0x0      0
+rip            0x4010a2 0x4010a2 <phase_6+83>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x00000000004010a5 in phase_6 ()
+(gdb) stepi
+0x00000000004010a8 in phase_6 ()
+(gdb) stepi
+0x00000000004010aa in phase_6 ()
+(gdb) stepi
+0x00000000004010ae in phase_6 ()
+(gdb) stepi
+0x00000000004010b2 in phase_6 ()
+(gdb) stepi
+0x00000000004010b4 in phase_6 ()
+(gdb) stepi
+0x00000000004010b7 in phase_6 ()
+(gdb) info register
+rax            0x0      0
+rbx            0x1      1
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a0   0x7fffffffe0a0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x1      1
+r15            0x0      0
+rip            0x4010b7 0x4010b7 <phase_6+104>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/36w 0x6032f0 
+0x6032f0 <node1>:       518     1       6304512 0
+0x603300 <node2>:       654     2       6304528 0
+0x603310 <node3>:       767     3       6304544 0
+0x603320 <node4>:       626     4       6304560 0
+0x603330 <node5>:       606     5       6304576 0
+0x603340 <node6>:       136     6       0       0
+0x603350 <bomb_id>:     32      0       0       0
+0x603360 <host_table>:  4203689 0       4203702 0
+0x603370 <host_table+16>:       4203714 0       0       0
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+3 2 4 5 1 6 
+
+BOOM!!!
+The bomb has blown up.
+[Inferior 1 (process 18255) exited with code 010]
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+5 4 2 3 6 1
+
+BOOM!!!
+The bomb has blown up.
+[Inferior 1 (process 18293) exited with code 010]
+(gdb) break phase_6
+Breakpoint 6 at 0x40104f
+(gdb) break *0x40115c
+Breakpoint 7 at 0x40115c
+(gdb) break *0x4010a8
+Breakpoint 8 at 0x4010a8
+(gdb) break *0x40108e
+Breakpoint 9 at 0x40108e
+(gdb) break *0x40115e
+Breakpoint 10 at 0x40115e
+(gdb) break *0x401073
+Breakpoint 11 at 0x401073
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+3 2 4 5 1 6
+
+Breakpoint 6, 0x000000000040104f in phase_6 ()
+(gdb) info register
+rax            0x603930 6306096
+rbx            0x0      0
+rcx            0xb      11
+rdx            0x603930 6306096
+rsi            0x5      5
+rdi            0x603930 6306096
+rbp            0x0      0x0
+rsp            0x7fffffffe0e8   0x7fffffffe0e8
+r8             0x2aaaaaad100c   46912496275468
+r9             0x0      0
+r10            0xb      11
+r11            0x246    582
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40104f 0x40104f <phase_6>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000401051 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 11, 0x0000000000401073 in phase_6 ()
+(gdb) info register
+rax            0x6      6
+rbx            0x0      0
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x0      0x0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x0      0
+r15            0x0      0
+rip            0x401073 0x401073 <phase_6+36>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) info register
+rax            0x2      2
+rbx            0x0      0
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a0   0x7fffffffe0a0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x0      0
+r15            0x0      0
+rip            0x4010a8 0x4010a8 <phase_6+89>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) info register
+rax            0x2      2
+rbx            0x1      1
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a0   0x7fffffffe0a0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x1      1
+r15            0x0      0
+rip            0x40108e 0x40108e <phase_6+63>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) info register
+rax            0x4      4
+rbx            0x2      2
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a0   0x7fffffffe0a0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x1      1
+r15            0x0      0
+rip            0x40108e 0x40108e <phase_6+63>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) info register
+rax            0x5      5
+rbx            0x3      3
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a0   0x7fffffffe0a0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x1      1
+r15            0x0      0
+rip            0x40108e 0x40108e <phase_6+63>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---continue
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) info register
+rax            0x1      1
+rbx            0x4      4
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a0   0x7fffffffe0a0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x1      1
+r15            0x0      0
+rip            0x40108e 0x40108e <phase_6+63>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) info register
+rax            0x6      6
+rbx            0x5      5
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a0   0x7fffffffe0a0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a0   140737488347296
+r14            0x1      1
+r15            0x0      0
+rip            0x40108e 0x40108e <phase_6+63>
+eflags         0x293    [ CF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) info register
+rax            0x1      1
+rbx            0x6      6
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x7fffffffe0a4   0x7fffffffe0a4
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0a0   140737488347296
+r13            0x7fffffffe0a4   140737488347300
+r14            0x1      1
+r15            0x0      0
+rip            0x4010a8 0x4010a8 <phase_6+89>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 7, 0x000000000040115c in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 7, 0x000000000040115c in phase_6 ()
+(gdb) info register
+rax            0x2ff    767
+rbx            0x603330 6304560
+rcx            0x1      1
+rdx            0x603340 6304576
+rsi            0x6      6
+rdi            0x7fffffffda50   140737488345680
+rbp            0x4      0x4
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0b8   140737488347320
+r13            0x7fffffffe0b4   140737488347316
+r14            0x6      6
+r15            0x0      0
+rip            0x40115c 0x40115c <phase_6+269>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 10, 0x000000000040115e in phase_6 ()
+(gdb) continue
+Continuing.
+
+BOOM!!!
+The bomb has blown up.
+[Inferior 1 (process 18369) exited with code 010]
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+3 2 4 5 1 6
+
+Breakpoint 6, 0x000000000040104f in phase_6 ()
+(gdb) x/24w 0x6032f0 
+0x6032f0 <node1>:       518     1       6304512 0
+0x603300 <node2>:       654     2       6304528 0
+0x603310 <node3>:       767     3       6304544 0
+0x603320 <node4>:       626     4       6304560 0
+0x603330 <node5>:       606     5       6304576 0
+0x603340 <node6>:       136     6       0       0
+(gdb) x/24x 0x6032f0 
+0x6032f0 <node1>:       0x00000206      0x00000001      0x00603300      0x00000000
+0x603300 <node2>:       0x0000028e      0x00000002      0x00603310      0x00000000
+0x603310 <node3>:       0x000002ff      0x00000003      0x00603320      0x00000000
+0x603320 <node4>:       0x00000272      0x00000004      0x00603330      0x00000000
+0x603330 <node5>:       0x0000025e      0x00000005      0x00603340      0x00000000
+0x603340 <node6>:       0x00000088      0x00000006      0x00000000      0x00000000
+(gdb) info register
+rax            0x603930 6306096
+rbx            0x0      0
+rcx            0xb      11
+rdx            0x603930 6306096
+rsi            0x5      5
+rdi            0x603930 6306096
+rbp            0x0      0x0
+rsp            0x7fffffffe0e8   0x7fffffffe0e8
+r8             0x2aaaaaad100c   46912496275468
+r9             0x0      0
+r10            0xb      11
+r11            0x246    582
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40104f 0x40104f <phase_6>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 11, 0x0000000000401073 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 9, 0x000000000040108e in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 8, 0x00000000004010a8 in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 7, 0x000000000040115c in phase_6 ()
+(gdb) info register
+rax            0x25e    606
+rbx            0x603320 6304544
+rcx            0x1      1
+rdx            0x603340 6304576
+rsi            0x6      6
+rdi            0x7fffffffda50   140737488345680
+rbp            0x5      0x5
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0b8   140737488347320
+r13            0x7fffffffe0b4   140737488347316
+r14            0x6      6
+r15            0x0      0
+rip            0x40115c 0x40115c <phase_6+269>
+eflags         0x216    [ PF AF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/24x 0x6032f0 
+0x6032f0 <node1>:       0x00000206      0x00000001      0x00000000      0x00000000
+0x603300 <node2>:       0x0000028e      0x00000002      0x00603340      0x00000000
+0x603310 <node3>:       0x000002ff      0x00000003      0x00603300      0x00000000
+0x603320 <node4>:       0x00000272      0x00000004      0x00603330      0x00000000
+0x603330 <node5>:       0x0000025e      0x00000005      0x00603310      0x00000000
+0x603340 <node6>:       0x00000088      0x00000006      0x006032f0      0x00000000
+(gdb) x/24w 0x6032f0 
+0x6032f0 <node1>:       0x00000206      0x00000001      0x00000000      0x00000000
+0x603300 <node2>:       0x0000028e      0x00000002      0x00603340      0x00000000
+0x603310 <node3>:       0x000002ff      0x00000003      0x00603300      0x00000000
+0x603320 <node4>:       0x00000272      0x00000004      0x00603330      0x00000000
+0x603330 <node5>:       0x0000025e      0x00000005      0x00603310      0x00000000
+0x603340 <node6>:       0x00000088      0x00000006      0x006032f0      0x00000000
+(gdb) x/24x 0x603320
+0x603320 <node4>:       0x00000272      0x00000004      0x00603330      0x00000000
+0x603330 <node5>:       0x0000025e      0x00000005      0x00603310      0x00000000
+0x603340 <node6>:       0x00000088      0x00000006      0x006032f0      0x00000000
+0x603350 <bomb_id>:     0x00000020      0x00000000      0x00000000      0x00000000
+0x603360 <host_table>:  0x004024a9      0x00000000      0x004024b6      0x00000000
+0x603370 <host_table+16>:       0x004024c2      0x00000000      0x00000000      0x00000000
+(gdb) x/24d 0x603320
+0x603320 <node4>:       626     4       6304560 0
+0x603330 <node5>:       606     5       6304528 0
+0x603340 <node6>:       136     6       6304496 0
+0x603350 <bomb_id>:     32      0       0       0
+0x603360 <host_table>:  4203689 0       4203702 0
+0x603370 <host_table+16>:       4203714 0       0       0
+(gdb) continue
+Continuing.
+
+Breakpoint 7, 0x000000000040115c in phase_6 ()
+(gdb) info register
+rax            0x2ff    767
+rbx            0x603330 6304560
+rcx            0x1      1
+rdx            0x603340 6304576
+rsi            0x6      6
+rdi            0x7fffffffda50   140737488345680
+rbp            0x4      0x4
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x7fffffffe0b8   140737488347320
+r13            0x7fffffffe0b4   140737488347316
+r14            0x6      6
+r15            0x0      0
+rip            0x40115c 0x40115c <phase_6+269>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/24d 0x603330
+0x603330 <node5>:       606     5       6304528 0
+0x603340 <node6>:       136     6       6304496 0
+0x603350 <bomb_id>:     32      0       0       0
+0x603360 <host_table>:  4203689 0       4203702 0
+0x603370 <host_table+16>:       4203714 0       0       0
+0x603380 <host_table+32>:       0       0       0       0
+(gdb) x/24d 0x2aaaab097060
+0x2aaaab097060 <_nl_global_locale>:     -1425454656     10922   -1425453312     10922
+0x2aaaab097070 <_nl_global_locale+16>:  -1425453184     10922   -1425451392     10922
+0x2aaaab097080 <_nl_global_locale+32>:  -1425453760     10922   -1425453888     10922
+0x2aaaab097090 <_nl_global_locale+48>:  0       0       -1425452224     10922
+0x2aaaab0970a0 <_nl_global_locale+64>:  -1425452128     10922   -1425452000     10922
+0x2aaaab0970b0 <_nl_global_locale+80>:  -1425451808     10922   -1425451680     10922
+(gdb) x/24x 0x2aaaab097060
+0x2aaaab097060 <_nl_global_locale>:     0xab0949c0      0x00002aaa      0xab094f00      0x00002aaa
+0x2aaaab097070 <_nl_global_locale+16>:  0xab094f80      0x00002aaa      0xab095680      0x00002aaa
+0x2aaaab097080 <_nl_global_locale+32>:  0xab094d40      0x00002aaa      0xab094cc0      0x00002aaa
+0x2aaaab097090 <_nl_global_locale+48>:  0x00000000      0x00000000      0xab095340      0x00002aaa
+0x2aaaab0970a0 <_nl_global_locale+64>:  0xab0953a0      0x00002aaa      0xab095420      0x00002aaa
+0x2aaaab0970b0 <_nl_global_locale+80>:  0xab0954e0      0x00002aaa      0xab095560      0x00002aaa
+(gdb) x/w $rsp
+0x7fffffffe070: 0x00603320
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) break phase_6
+Breakpoint 12 at 0x40104f
+(gdb) break *0x40105b
+Breakpoint 13 at 0x40105b
+(gdb) break *0x401065
+Breakpoint 14 at 0x401065
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+3 2 4 5 1 6
+
+Breakpoint 12, 0x000000000040104f in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 13, 0x000000000040105b in phase_6 ()
+(gdb) info register
+rax            0x603930 6306096
+rbx            0x0      0
+rcx            0xb      11
+rdx            0x603930 6306096
+rsi            0x5      5
+rdi            0x603930 6306096
+rbp            0x0      0x0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaaaad100c   46912496275468
+r9             0x0      0
+r10            0xb      11
+r11            0x246    582
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40105b 0x40105b <phase_6+12>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/w $rsp
+0x7fffffffe070: 0xab097400
+(gdb) continue
+Continuing.
+
+Breakpoint 14, 0x0000000000401065 in phase_6 ()
+(gdb) info register
+rax            0x6      6
+rbx            0x0      0
+rcx            0x7fffffffe060   140737488347232
+rdx            0x0      0
+rsi            0x0      0
+rdi            0x7fffffffda50   140737488345680
+rbp            0x0      0x0
+rsp            0x7fffffffe070   0x7fffffffe070
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401065 0x401065 <phase_6+22>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/w $rsp
+0x7fffffffe070: 0xab097400
+(gdb) x/w $r14
+0x0:    Cannot access memory at address 0x0
+(gdb) x/w $r13
+0x7fffffffe1d0: 0x00000001
+(gdb) x/s $r13
+0x7fffffffe1d0: "\001"
+(gdb) x/s $r12
+0x400c50 <_start>:      "1\355I\211\321^H\211\342H\203\344\360PTI\307\300"
+(gdb) stepi
+0x000000000040106a in phase_6 ()
+(gdb) x/s $r12
+0x7fffffffe0a0: "\003"
+(gdb) x/s $rsp
+0x7fffffffe070: ""
+(gdb) x/s $rsp+8
+0x7fffffffe078: "@v\t\253\252*"
+(gdb) x/s $rsp+38
+0x7fffffffe096: ""
+(gdb) x/s $rsp+48
+0x7fffffffe0a0: "\003"
+(gdb) x/s $rsp+16
+0x7fffffffe080: "09`"
+(gdb) x/s $rsp+32
+0x7fffffffe090: "\320\341\377\377\377\177"
+(gdb) x/s $rsp+48
+0x7fffffffe0a0: "\003"
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+4 5 3 2 6 1
+
+Breakpoint 12, 0x000000000040104f in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 13, 0x000000000040105b in phase_6 ()
+(gdb) continue
+Continuing.
+
+Breakpoint 14, 0x0000000000401065 in phase_6 ()
+(gdb) continue
+Continuing.
+Congratulations! You've defused the bomb!
+[Inferior 1 (process 19058) exited normally]
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) ./bomb psol.txt
+Undefined command: "".  Try "help".
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+4 5 3 2 6 1
+Congratulations! You've defused the bomb!
+[Inferior 1 (process 19074) exited normally]
+(gdb) 

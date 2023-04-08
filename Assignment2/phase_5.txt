@@ -1,0 +1,554 @@
+[edusc03-032@cheetah ~]$  ssh cheetah022
+Last login: Fri May 27 11:16:24 2022 from 172.31.60.200
+[edusc03-032@cheetah022 ~]$ cd Assignment2/bomb32
+[edusc03-032@cheetah022 bomb32]$ gdb bomb
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-100.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /home/edusc03/edusc03-032/Assignment2/bomb32/bomb...done.
+(gdb) break phase_5
+Breakpoint 1 at 0x400fdc
+(gdb) run
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+t t t
+
+Breakpoint 1, 0x0000000000400fdc in phase_5 ()
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-325.el7_9.x86_64
+(gdb) x/s 0x40244f
+0x40244f:       "%d %d"
+(gdb) x/s 0x402300
+0x402300 <array.3236>:  "\n"
+(gdb) print 0x402300
+$1 = 4203264
+(gdb) break 0x40101b
+Function "0x40101b" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) break *0x40101b
+Breakpoint 2 at 0x40101b
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 14
+
+Breakpoint 1, 0x0000000000400fdc in phase_5 ()
+(gdb) info register
+rax            0x6038e0 6306016
+rbx            0x0      0
+rcx            0x4      4
+rdx            0x6038e0 6306016
+rsi            0x4      4
+rdi            0x6038e0 6306016
+rbp            0x0      0x0
+rsp            0x7fffffffe0e8   0x7fffffffe0e8
+r8             0x2aaaaaad1005   46912496275461
+r9             0x0      0
+r10            0x4      4
+r11            0x246    582
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x400fdc 0x400fdc <phase_5>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 2, 0x000000000040101b in phase_5 ()
+(gdb) info register
+rax            0x5      5
+rbx            0x0      0
+rcx            0x0      0
+rdx            0x1      1
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40101b 0x40101b <phase_5+63>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x000000000040101d in phase_5 ()
+(gdb) info register
+rax            0x5      5
+rbx            0x0      0
+rcx            0x0      0
+rdx            0x1      1
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40101d 0x40101d <phase_5+65>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000401024 in phase_5 ()
+(gdb) info register
+rax            0xc      12
+rbx            0x0      0
+rcx            0x0      0
+rdx            0x1      1
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401024 0x401024 <phase_5+72>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) print /d $eax
+$2 = 12
+(gdb) continue
+Continuing.
+
+Breakpoint 2, 0x000000000040101b in phase_5 ()
+(gdb) info register
+rax            0xc      12
+rbx            0x0      0
+rcx            0xc      12
+rdx            0x2      2
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40101b 0x40101b <phase_5+63>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x000000000040101d in phase_5 ()
+(gdb) stepi
+0x0000000000401024 in phase_5 ()
+(gdb) info register
+rax            0x3      3
+rbx            0x0      0
+rcx            0xc      12
+rdx            0x2      2
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401024 0x401024 <phase_5+72>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 2, 0x000000000040101b in phase_5 ()
+(gdb) info register
+rax            0x3      3
+rbx            0x0      0
+rcx            0xf      15
+rdx            0x3      3
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40101b 0x40101b <phase_5+63>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x000000000040101d in phase_5 ()
+(gdb) stepi
+0x0000000000401024 in phase_5 ()
+(gdb) info register
+rax            0x7      7
+rbx            0x0      0
+rcx            0xf      15
+rdx            0x3      3
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401024 0x401024 <phase_5+72>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) continue
+Continuing.
+
+Breakpoint 2, 0x000000000040101b in phase_5 ()
+(gdb) stepi
+0x000000000040101d in phase_5 ()
+(gdb) info register
+rax            0x7      7
+rbx            0x0      0
+rcx            0x16     22
+rdx            0x4      4
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40101d 0x40101d <phase_5+65>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000401024 in phase_5 ()
+(gdb) info register
+rax            0xb      11
+rbx            0x0      0
+rcx            0x16     22
+rdx            0x4      4
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401024 0x401024 <phase_5+72>
+eflags         0x202    [ IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000401026 in phase_5 ()
+(gdb) stepi
+0x0000000000401029 in phase_5 ()
+(gdb) info register
+rax            0xb      11
+rbx            0x0      0
+rcx            0x21     33
+rdx            0x4      4
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401029 0x401029 <phase_5+77>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) info register
+rax            0xb      11
+rbx            0x0      0
+rcx            0x21     33
+rdx            0x4      4
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401029 0x401029 <phase_5+77>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000401018 in phase_5 ()
+(gdb) info register
+rax            0xb      11
+rbx            0x0      0
+rcx            0x21     33
+rdx            0x4      4
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401018 0x401018 <phase_5+60>
+eflags         0x297    [ CF PF AF SF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+
+Breakpoint 2, 0x000000000040101b in phase_5 ()
+(gdb) stepi
+0x000000000040101d in phase_5 ()
+(gdb) info register
+rax            0xb      11
+rbx            0x0      0
+rcx            0x21     33
+rdx            0x5      5
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x40101d 0x40101d <phase_5+65>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) stepi
+0x0000000000401024 in phase_5 ()
+(gdb) info register
+rax            0xd      13
+rbx            0x0      0
+rcx            0x21     33
+rdx            0x5      5
+rsi            0x0      0
+rdi            0x7fffffffdad0   140737488345808
+rbp            0x0      0x0
+rsp            0x7fffffffe0d0   0x7fffffffe0d0
+r8             0x2aaaab097060   46912502329440
+r9             0x0      0
+r10            0x0      0
+r11            0x0      0
+r12            0x400c50 4197456
+r13            0x7fffffffe1d0   140737488347600
+r14            0x0      0
+r15            0x0      0
+rip            0x401024 0x401024 <phase_5+72>
+eflags         0x206    [ PF IF ]
+cs             0x33     51
+ss             0x2b     43
+---Type <return> to continue, or q <return> to quit---
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/g 0x402300
+0x402300 <array.3236>:  8589934602
+(gdb) x/17w 0x402300
+0x402300 <array.3236>:  10      2       14      7
+0x402310 <array.3236+16>:       8       12      15      11
+0x402320 <array.3236+32>:       0       4       1       13
+0x402330 <array.3236+48>:       3       9       6       5
+0x402340:       2032168787
+(gdb) break *0x401043
+Breakpoint 3 at 0x401043
+(gdb) disable 1
+(gdb) disable 2
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+
+Breakpoint 3, 0x0000000000401043 in phase_5 ()
+(gdb) stepi
+0x0000000000401047 in phase_5 ()
+(gdb) break phase_6
+Breakpoint 4 at 0x40104f
+(gdb) stepi
+main (argc=<optimized out>, argv=<optimized out>) at bomb.c:102
+102         phase_defused();
+(gdb) disable 3
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/edusc03/edusc03-032/Assignment2/bomb32/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+The future will be better tomorrow.
+Phase 1 defused. How about the next one?
+1 2 4 7 11 16
+That's number 2.  Keep going!
+2 684
+Halfway there!
+9 27
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
+^C
+Program received signal SIGINT, Interrupt.
+0x00002aaaaadbeb40 in __read_nocancel () from /lib64/libc.so.6
+(gdb) 
